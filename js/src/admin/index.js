@@ -1,31 +1,36 @@
 import app from 'flarum/admin/app';
 
-app.initializers.add('ralkage/cap-captcha', () => {
+app.initializers.add('dvdkon-altcha-captcha', () => {
   app.extensionData
-    .for('ralkage-cap-captcha')
+    .for('dvdkon-altcha-captcha')
     .registerSetting({
-      setting: 'ralkage-cap-captcha.api_endpoint',
+      setting: 'dvdkon-altcha-captcha.hmac_secret',
       type: 'text',
-      label: app.translator.trans('ralkage-cap-captcha.admin.settings.api_endpoint_label'),
-      help: app.translator.trans('ralkage-cap-captcha.admin.settings.api_endpoint_help'),
-      placeholder: 'https://cap.example.com/your-site-key/',
+      label: app.translator.trans('dvdkon-altcha-captcha.admin.settings.hmac_secret_label'),
+      help: app.translator.trans('dvdkon-altcha-captcha.admin.settings.hmac_secret_help'),
     })
     .registerSetting({
-      setting: 'ralkage-cap-captcha.secret_key',
-      type: 'text',
-      label: app.translator.trans('ralkage-cap-captcha.admin.settings.secret_key_label'),
-      help: app.translator.trans('ralkage-cap-captcha.admin.settings.secret_key_help'),
+      setting: 'dvdkon-altcha-captcha.cost',
+      type: 'number',
+      label: app.translator.trans('dvdkon-altcha-captcha.admin.settings.cost_label'),
+      help: app.translator.trans('dvdkon-altcha-captcha.admin.settings.cost_help'),
     })
     .registerSetting({
-      setting: 'ralkage-cap-captcha.protect_registration',
+      setting: 'dvdkon-altcha-captcha.expiry',
+      type: 'number',
+      label: app.translator.trans('dvdkon-altcha-captcha.admin.settings.expiry_label'),
+      help: app.translator.trans('dvdkon-altcha-captcha.admin.settings.expiry_help'),
+    })
+    .registerSetting({
+      setting: 'dvdkon-altcha-captcha.protect_registration',
       type: 'boolean',
-      label: app.translator.trans('ralkage-cap-captcha.admin.settings.protect_registration_label'),
-      help: app.translator.trans('ralkage-cap-captcha.admin.settings.protect_registration_help'),
+      label: app.translator.trans('dvdkon-altcha-captcha.admin.settings.protect_registration_label'),
+      help: app.translator.trans('dvdkon-altcha-captcha.admin.settings.protect_registration_help'),
     })
     .registerSetting({
-      setting: 'ralkage-cap-captcha.protect_login',
+      setting: 'dvdkon-altcha-captcha.protect_login',
       type: 'boolean',
-      label: app.translator.trans('ralkage-cap-captcha.admin.settings.protect_login_label'),
-      help: app.translator.trans('ralkage-cap-captcha.admin.settings.protect_login_help'),
+      label: app.translator.trans('dvdkon-altcha-captcha.admin.settings.protect_login_label'),
+      help: app.translator.trans('dvdkon-altcha-captcha.admin.settings.protect_login_help'),
     });
 });

@@ -1,10 +1,10 @@
 {
-    "name": "ralkage/flarum-ext-cap-captcha",
-    "description": "Self-hosted CAPTCHA using Cap (proof-of-work) for registration and login protection",
+    "name": "dvdkon/flarum-ext-altcha-captcha",
+    "description": "Self-hosted CAPTCHA using Altcha (proof-of-work) for registration and login protection",
     "type": "flarum-extension",
     "keywords": [
         "captcha",
-        "cap",
+        "altcha",
         "proof-of-work",
         "spam",
         "registration",
@@ -16,20 +16,25 @@
             "name": "Ralkage",
             "email": "me@ralkage.com",
             "homepage": "https://ralkage.com"
+        },
+        {
+            "name": "David Koňařík",
+            "email": "dvdkon@konarici.cz",
+            "homepage": "https://dvdkon.ggu.cz"
         }
     ],
-    "homepage": "https://ralkage.com",
     "require": {
-        "flarum/core": "^1.8"
+        "flarum/core": "^1.8",
+        "altcha-org/altcha": "^2.0"
     },
     "autoload": {
         "psr-4": {
-            "Ralkage\\CapCaptcha\\": "src/"
+            "AltchaCaptcha\\": "src/"
         }
     },
     "extra": {
         "flarum-extension": {
-            "title": "Cap CAPTCHA",
+            "title": "Altcha CAPTCHA",
             "category": "feature",
             "icon": {
                 "name": "fas fa-robot",

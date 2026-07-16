@@ -1,18 +1,18 @@
 <?php
 
-namespace Ralkage\CapCaptcha\Listener;
+namespace AltchaCaptcha\Listener;
 
 use Flarum\Foundation\ValidationException;
 use Flarum\Locale\Translator;
 use Flarum\User\Event\Saving;
-use Ralkage\CapCaptcha\CapValidator;
+use AltchaCaptcha\AltchaValidator;
 
-class ValidateCapToken
+class ValidateAltchaToken
 {
     protected $validator;
     protected $translator;
 
-    public function __construct(CapValidator $validator, Translator $translator)
+    public function __construct(AltchaValidator $validator, Translator $translator)
     {
         $this->validator = $validator;
         $this->translator = $translator;
@@ -34,11 +34,11 @@ class ValidateCapToken
             return;
         }
 
-        $token = $event->data['attributes']['capToken'] ?? '';
+        $payload = $event->data['attributes']['altcha'] ?? '';
 
-        if (! $this->validator->verify($token)) {
+        if (! $this->validator->verify($payload)) {
             throw new ValidationException([
-                'capToken' => $this->translator->trans('ralkage-cap-captcha.api.invalid_captcha'),
+                'altcha' => $this->translator->trans('dvdkon-altcha-captcha.api.invalid_captcha'),
             ]);
         }
     }

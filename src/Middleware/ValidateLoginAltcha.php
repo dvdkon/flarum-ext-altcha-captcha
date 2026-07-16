@@ -1,6 +1,6 @@
 <?php
 
-namespace Ralkage\CapCaptcha\Middleware;
+namespace AltchaCaptcha\Middleware;
 
 use Flarum\Foundation\ValidationException;
 use Flarum\Locale\Translator;
@@ -8,14 +8,14 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Ralkage\CapCaptcha\CapValidator;
+use AltchaCaptcha\AltchaValidator;
 
-class ValidateLoginCaptcha implements MiddlewareInterface
+class ValidateLoginAltcha implements MiddlewareInterface
 {
     protected $validator;
     protected $translator;
 
-    public function __construct(CapValidator $validator, Translator $translator)
+    public function __construct(AltchaValidator $validator, Translator $translator)
     {
         $this->validator = $validator;
         $this->translator = $translator;
@@ -30,11 +30,11 @@ class ValidateLoginCaptcha implements MiddlewareInterface
         if ($method === 'POST' && preg_match('#/login$#', $path)) {
             if ($this->validator->shouldProtect('login')) {
                 $body = $request->getParsedBody();
-                $token = $body['capToken'] ?? '';
+                $payload = $body['altcha'] ?? '';
 
-                if (! $this->validator->verify($token)) {
+                if (! $this->validator->verify($payload)) {
                     throw new ValidationException([
-                        'capToken' => $this->translator->trans('ralkage-cap-captcha.api.invalid_captcha'),
+                        'altcha' => $this->translator->trans('dvdkon-altcha-captcha.api.invalid_captcha'),
                     ]);
                 }
             }

@@ -1,14 +1,16 @@
-ralkage-cap-captcha:
+dvdkon-altcha-captcha:
   admin:
     settings:
-      api_endpoint_label: "Cap API Endpoint"
-      api_endpoint_help: "Your Cap Standalone instance URL with site key, e.g. https://cap.example.com/your-site-key/"
-      secret_key_label: "Cap Secret Key"
-      secret_key_help: "Your site key's secret from the Cap dashboard."
+      hmac_secret_label: "HMAC Secret"
+      hmac_secret_help: "A random secret used to sign ALTCHA challenges. Keep it private."
+      cost_label: "Proof-of-work cost"
+      cost_help: "Number of iterations (higher = harder for bots). Default: 20000."
+      expiry_label: "Challenge expiry (seconds)"
+      expiry_help: "How long a challenge stays valid. Default: 300."
       protect_registration_label: "Require CAPTCHA on registration"
-      protect_registration_help: "Show Cap widget on the sign-up form."
+      protect_registration_help: "Show ALTCHA widget on the sign-up form."
       protect_login_label: "Require CAPTCHA on login"
-      protect_login_help: "Show Cap widget on the login form."
+      protect_login_help: "Show ALTCHA widget on the login form."
   forum:
     captcha_required: "Please verify you're human by completing the CAPTCHA challenge."
   api:

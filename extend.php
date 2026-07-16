@@ -2,8 +2,9 @@
 
 use Flarum\Extend;
 use Flarum\User\Event\Saving;
-use Ralkage\CapCaptcha\Listener\ValidateCapToken;
-use Ralkage\CapCaptcha\Middleware\ValidateLoginCaptcha;
+use AltchaCaptcha\Api\ChallengeController;
+use AltchaCaptcha\Listener\ValidateAltchaToken;
+use AltchaCaptcha\Middleware\ValidateLoginAltcha;
 
 return [
     (new Extend\Frontend('admin'))
@@ -15,16 +16,18 @@ return [
 
     new Extend\Locales(__DIR__.'/locale'),
 
+    (new Extend\Routes('forum'))
+        ->get('/altcha-challenge', 'dvdkon-altcha-captcha.challenge', ChallengeController::class),
+
     (new Extend\Event())
-        ->listen(Saving::class, ValidateCapToken::class),
+        ->listen(Saving::class, ValidateAltchaToken::class),
 
     (new Extend\Middleware('forum'))
-        ->add(ValidateLoginCaptcha::class),
+        ->add(ValidateLoginAltcha::class),
 
     (new Extend\Settings())
-        ->default('ralkage-cap-captcha.protect_registration', true)
-        ->default('ralkage-cap-captcha.protect_login', false)
-        ->serializeToForum('ralkage-cap-captcha.api_endpoint', 'ralkage-cap-captcha.api_endpoint')
-        ->serializeToForum('ralkage-cap-captcha.protect_registration', 'ralkage-cap-captcha.protect_registration', 'boolval')
-        ->serializeToForum('ralkage-cap-captcha.protect_login', 'ralkage-cap-captcha.protect_login', 'boolval'),
+        ->default('dvdkon-altcha-captcha.protect_registration', true)
+        ->default('dvdkon-altcha-captcha.protect_login', false)
+        ->serializeToForum('dvdkon-altcha-captcha.protect_registration', 'dvdkon-altcha-captcha.protect_registration', 'boolval')
+        ->serializeToForum('dvdkon-altcha-captcha.protect_login', 'dvdkon-altcha-captcha.protect_login', 'boolval'),
 ];
